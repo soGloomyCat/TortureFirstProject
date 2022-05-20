@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +21,13 @@ public class Collector : MonoBehaviour
     private List<AwakenedCharacter> _awakenedArray;
     private Coroutine _coroutine;
 
+    public event Action<Transform> AddedNewAwakend;
+    public event Action<Transform> RemovedLastAwakend;
+
     private void OnEnable()
     {
         if (_prefab == null || _awakenedPool == null || _currentMaterial == null)
-            throw new System.ArgumentNullException("Отсутствует один из обязательных параметров. Проверьте редактор");
+            throw new ArgumentNullException("Отсутствует один из обязательных параметров. Проверьте редактор");
     }
 
     private void Start()
@@ -38,6 +42,11 @@ public class Collector : MonoBehaviour
     {
         if (_countCubesCollected > 0)
         {
+            if (_awakenedArray.Count >= 2)
+                RemovedLastAwakend?.Invoke(_awakenedArray[_awakenedArray.Count - _offsetCount * 2].transform);
+            else
+                RemovedLastAwakend?.Invoke(transform);
+
             Destroy(_awakenedArray[_awakenedArray.Count - _offsetCount].gameObject);
             _awakenedArray.RemoveAt(_awakenedArray.Count - _offsetCount);
             _countCubesCollected--;
@@ -85,11 +94,12 @@ public class Collector : MonoBehaviour
             tempCharacter.transform.position = new Vector3(transform.position.x, transform.position.y + tempOffset, transform.position.z);
 
             if (_awakenedPool.childCount > _minValueForChangeSpawnType)
-                tempCharacter.InizializeParameters(_currentMaterial, _awakenedArray[_awakenedArray.Count - _offsetCount].Rigidbody, tempOffset);
+                tempCharacter.InizializeParameters(_currentMaterial, _awakenedArray[_awakenedArray.Count - _offsetCount].Rigidbody);
             else
-                tempCharacter.InizializeParameters(_currentMaterial, _rigidbody, tempOffset);
+                tempCharacter.InizializeParameters(_currentMaterial, _rigidbody);
 
             _awakenedArray.Add(tempCharacter);
+            AddedNewAwakend?.Invoke(tempCharacter.transform);
 
             yield return delay;
         }

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DiamondMat
+  m_Name: DiamondSliceMat
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_ShaderKeywords: DR_SPECULAR_ON _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY
     _UNITYSHADOWMODE_NONE
@@ -118,8 +118,8 @@ Material:
     - _VertexColorsEnabled: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.4716981, g: 0.113029525, b: 0.3805485, a: 1}
-    - _ColorDim: {r: 0.254717, g: 0.04181202, b: 0.2058064, a: 1}
+    - _Color: {r: 0.6698113, g: 0.21105371, b: 0.55386144, a: 1}
+    - _ColorDim: {r: 0.31132078, g: 0.051103584, b: 0.2486759, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.754717, g: 0.15236738, b: 0.6178192, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}

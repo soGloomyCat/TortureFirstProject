@@ -6,10 +6,11 @@ public class EventsHandler : MonoBehaviour
     [SerializeField] private Collector[] _collectors;
     [SerializeField] private Stalker[] _stalkers;
     [SerializeField] private BlinkHandler[] _blinkHandlers;
+    [SerializeField] private Arrow[] _arrows;
 
     private void OnEnable()
     {
-        if (_movers == null || _collectors == null || _stalkers == null || _blinkHandlers == null)
+        if (_movers == null || _collectors == null || _stalkers == null || _blinkHandlers == null || _arrows == null)
             throw new System.ArgumentNullException("Отсутствует один из обязательных параметров. Проверьте редактор.");
 
         AddEvents();
@@ -32,6 +33,12 @@ public class EventsHandler : MonoBehaviour
         {
             _movers[i].Moved += _stalkers[i].OnMoveHandler;
         }
+
+        for (int i = 0; i < _arrows.Length; i++)
+        {
+            _collectors[i].AddedNewAwakend += _arrows[i].Shift;
+            _collectors[i].RemovedLastAwakend += _arrows[i].Shift;
+        }
     }
 
     private void RemoveEvents()
@@ -45,6 +52,12 @@ public class EventsHandler : MonoBehaviour
         for (int i = 0; i < _stalkers.Length; i++)
         {
             _movers[i].Moved -= _stalkers[i].OnMoveHandler;
+        }
+
+        for (int i = 0; i < _arrows.Length; i++)
+        {
+            _collectors[i].AddedNewAwakend -= _arrows[i].Shift;
+            _collectors[i].RemovedLastAwakend -= _arrows[i].Shift;
         }
     }
 }
