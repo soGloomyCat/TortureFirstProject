@@ -61,8 +61,8 @@ public class Collector : MonoBehaviour
     {
         if (other.transform.TryGetComponent(out SleepersCell sleepersCell) && sleepersCell.SleepersCount > _triggerValue)
         {
+            transform.position = sleepersCell.transform.GetChild(1).position;
             sleepersCell.StartDestroy();
-
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
