@@ -25,16 +25,22 @@ public class SleepersCell : MonoBehaviour
 
     public void StartDestroy()
     {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
+        //if (_coroutine != null)
+        //    StopCoroutine(_coroutine);
 
-        _coroutine = StartCoroutine(DestroyAvailableSleepers());
+        //_coroutine = StartCoroutine(DestroyAvailableSleepers());
+        _particleSystem.Play();
+
+        for (int i = 1; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     public void SetColliderParameters()
     {
         float tempVerticalSize = (float)SleepersCount / 2;
-        float tempVerticalCenter = SleepersCount * 0.25f;
+        float tempVerticalCenter = SleepersCount * 0;
 
         _collider.size = new Vector3(_collider.size.x, tempVerticalSize, _collider.size.z);
         _collider.center = new Vector3(_collider.center.x, tempVerticalCenter, _collider.center.z);
@@ -45,7 +51,7 @@ public class SleepersCell : MonoBehaviour
         WaitForSeconds waiter;
 
         waiter = new WaitForSeconds(0.15f);
-        _particleSystem.Play();
+        
 
         for (int i = transform.childCount - 1; i >= 1; i--)
         {

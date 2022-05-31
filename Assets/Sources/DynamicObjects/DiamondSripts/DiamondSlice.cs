@@ -36,11 +36,9 @@ public class DiamondSlice : MonoBehaviour
     private IEnumerator Move()
     {
         WaitForSeconds waiter;
-        float timer;
         Vector3 finishPoint;
 
         waiter = new WaitForSeconds(_delay);
-        timer = 0;
         finishPoint = new Vector3(10, 10, 0);
 
         yield return waiter;

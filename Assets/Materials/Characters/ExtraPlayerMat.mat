@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: ExtraPlayerMat
   m_Shader: {fileID: 4800000, guid: 0daa94f23f43f498b822cfbfc22c6689, type: 3}
-  m_ShaderKeywords: _CELPRIMARYMODE_NONE _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_COLOR
+  m_ShaderKeywords: DR_GRADIENT_ON _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY
+    _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -69,7 +70,7 @@ Material:
     - _BumpScale: 1
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
-    - _CelPrimaryMode: 0
+    - _CelPrimaryMode: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -87,7 +88,7 @@ Material:
     - _GradientAngle: 0
     - _GradientCenterX: 0
     - _GradientCenterY: -1
-    - _GradientEnabled: 0
+    - _GradientEnabled: 1
     - _GradientSize: 10
     - _LightContribution: 0
     - _LightmapDirectionPitch: 0
@@ -101,7 +102,7 @@ Material:
     - _RimEnabled: 0
     - _SelfShadingSize: 0.65
     - _SelfShadingSizeExtra: 0.6
-    - _ShadowEdgeSize: 0.2
+    - _ShadowEdgeSize: 0.3
     - _ShadowEdgeSizeExtra: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
@@ -110,7 +111,7 @@ Material:
     - _Surface: 0
     - _TextureImpact: 1
     - _UVSec: 0
-    - _UnityShadowMode: 2
+    - _UnityShadowMode: 0
     - _UnityShadowPower: 0.2
     - _UnityShadowSharpness: 10
     - _VertexColorsEnabled: 0
@@ -121,7 +122,7 @@ Material:
     - _ColorDimCurve: {r: 0.5605202, g: 1, b: 0, a: 1}
     - _ColorDimExtra: {r: 0, g: 0.38679248, b: 0.08190904, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _ColorGradient: {r: 0, g: 0.14150941, b: 0.007146956, a: 1}
+    - _ColorGradient: {r: 0, g: 0.5283019, b: 0.029350119, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatRimColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatSpecularColor: {r: 0.2445708, g: 0.8584906, b: 0.140922, a: 1}

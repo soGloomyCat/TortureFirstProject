@@ -85,8 +85,6 @@ public class Collector : MonoBehaviour
 
         delay = new WaitForSeconds(0.05f);
 
-        yield return delay;
-
         for (int i = 0; i < sleepersCount; i++)
         {
             _countCubesCollected++;
@@ -103,7 +101,7 @@ public class Collector : MonoBehaviour
             _awakenedArray.Add(tempCharacter);
             AddedNewAwakend?.Invoke(tempCharacter.transform);
 
-            yield return delay;
+            yield return null;
         }
     }
 }

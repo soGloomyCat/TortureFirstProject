@@ -7,7 +7,7 @@ public class Player : Character
     private void Update()
     {
         if (Input.GetMouseButtonDown(_buttonIndex))
-            Time.timeScale = 2;
+            Time.timeScale = 2f;
 
         if (Input.GetMouseButtonDown(_buttonIndex) && CanClickAgain())
             InitializeJump();
