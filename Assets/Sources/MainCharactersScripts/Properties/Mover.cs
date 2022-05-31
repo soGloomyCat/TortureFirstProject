@@ -1,12 +1,13 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Mover : MonoBehaviour
 {
-    private const float _forceBooster = 0.5f;
-    private const int _targetChildCount = 3;
+    private const float _normalForceBooster = 0.2f;
+    private const float _maxForceBooster = 0.4f;
+    private const int _mediumCellValue = 2;
+    private const int _largeCellValue = 3;
 
     [Range(0, 10)]
     [SerializeField] private float _verticalDirection;
@@ -77,8 +78,10 @@ public class Mover : MonoBehaviour
         forceMultiplier = 1;
 
         if (Physics.Raycast(tempRay, out tempHit, 1.5f))
-            if (tempHit.transform.TryGetComponent(out SleepersCell sleepersCell) && tempHit.transform.childCount > _targetChildCount)
-                return forceMultiplier + _forceBooster;
+            if (tempHit.transform.TryGetComponent(out SleepersCell largeSleepersCell) && largeSleepersCell.SleepersCount >= _largeCellValue)
+                return forceMultiplier + _maxForceBooster;
+            else if (tempHit.transform.TryGetComponent(out SleepersCell mediumSleepersCell) && mediumSleepersCell.SleepersCount >= _mediumCellValue)
+                return forceMultiplier + _normalForceBooster;
 
         return forceMultiplier;
     }

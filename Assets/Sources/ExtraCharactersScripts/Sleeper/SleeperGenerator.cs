@@ -58,6 +58,7 @@ public class SleeperGenerator : MonoBehaviour
             }
 
             currentIteration++;
+            _sleepersCells[currentIndexCell].SetColliderParameters();
         }
     }
 

@@ -25,7 +25,7 @@ public class DiamondSlice : MonoBehaviour
 
     public void Dump()
     {
-        _rigidbody.AddForce(Random.insideUnitSphere * 10, ForceMode.Force);
+        _rigidbody.AddForce(Random.insideUnitSphere * 50, ForceMode.Force);
 
         if (_coroutine != null)
             StopCoroutine(_coroutine);

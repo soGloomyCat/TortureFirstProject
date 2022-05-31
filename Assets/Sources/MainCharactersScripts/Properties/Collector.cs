@@ -61,7 +61,7 @@ public class Collector : MonoBehaviour
     {
         if (other.transform.TryGetComponent(out SleepersCell sleepersCell) && sleepersCell.SleepersCount > _triggerValue)
         {
-            sleepersCell.DestroyAvailableSleepers();
+            sleepersCell.StartDestroy();
 
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
@@ -83,7 +83,9 @@ public class Collector : MonoBehaviour
         WaitForSeconds delay;
         AwakenedCharacter tempCharacter;
 
-        delay = new WaitForSeconds(0.1f);
+        delay = new WaitForSeconds(0.05f);
+
+        yield return delay;
 
         for (int i = 0; i < sleepersCount; i++)
         {
