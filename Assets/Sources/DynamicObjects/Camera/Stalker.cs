@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Stalker : MonoBehaviour
 {
-    private const float _offset = 1;
+    private const float Offset = 1;
 
     [Range(0, 100)]
     [SerializeField] private float _speed;
@@ -12,7 +12,7 @@ public class Stalker : MonoBehaviour
 
     public void OnMoveHandler()
     {
-        Vector3 tempFinalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + _offset);
+        Vector3 tempFinalPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + Offset);
 
         if (_coroutine != null)
             StopCoroutine(_coroutine);

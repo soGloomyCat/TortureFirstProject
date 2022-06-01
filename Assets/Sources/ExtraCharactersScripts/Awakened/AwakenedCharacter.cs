@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AwakenedCharacter : MonoBehaviour
 {
-    private const float _offset = 3;
+    private const float Offset = 3;
 
     private Renderer _renderer;
     private CharacterJoint _characterJoint;
@@ -22,7 +22,7 @@ public class AwakenedCharacter : MonoBehaviour
 
     public void InizializeParameters(Material material, Rigidbody rigidbody)
     {
-        float temp = transform.localScale.y * _offset;
+        float temp = transform.localScale.y * Offset;
 
         _renderer.material = material;
         _characterJoint.connectedBody = rigidbody;

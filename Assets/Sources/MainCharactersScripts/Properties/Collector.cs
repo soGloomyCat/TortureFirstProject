@@ -6,10 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Collector : MonoBehaviour
 {
-    private const int _inviolableObjectsCount = 1;
-    private const int _offsetCount = 1;
-    private const int _minValueForChangeSpawnType = 1;
-    private const int _triggerValue = 0;
+    private const int InviolableObjectsCount = 1;
+    private const int OffsetCount = 1;
+    private const int MinValueForChangeSpawnType = 1;
+    private const int TriggerValue = 0;
+    private const int IndexLowerSleepers = 1;
 
     [SerializeField] private AwakenedCharacter _prefab;
     [SerializeField] private Transform _awakenedPool;
@@ -43,12 +44,12 @@ public class Collector : MonoBehaviour
         if (_countCubesCollected > 0)
         {
             if (_awakenedArray.Count >= 2)
-                RemovedLastAwakend?.Invoke(_awakenedArray[_awakenedArray.Count - _offsetCount * 2].transform);
+                RemovedLastAwakend?.Invoke(_awakenedArray[_awakenedArray.Count - OffsetCount * 2].transform);
             else
                 RemovedLastAwakend?.Invoke(transform);
 
-            Destroy(_awakenedArray[_awakenedArray.Count - _offsetCount].gameObject);
-            _awakenedArray.RemoveAt(_awakenedArray.Count - _offsetCount);
+            Destroy(_awakenedArray[_awakenedArray.Count - OffsetCount].gameObject);
+            _awakenedArray.RemoveAt(_awakenedArray.Count - OffsetCount);
             _countCubesCollected--;
         }
         else
@@ -59,31 +60,28 @@ public class Collector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.TryGetComponent(out SleepersCell sleepersCell) && sleepersCell.SleepersCount > _triggerValue)
+        if (other.transform.TryGetComponent(out SleepersCell sleepersCell) && sleepersCell.SleepersCount > TriggerValue)
         {
-            transform.position = sleepersCell.transform.GetChild(1).position;
+            transform.position = sleepersCell.transform.GetChild(IndexLowerSleepers).position;
             sleepersCell.StartDestroy();
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
-            _coroutine = StartCoroutine(WakeUpSleepers(sleepersCell.transform.childCount - _inviolableObjectsCount));
+            _coroutine = StartCoroutine(WakeUpSleepers(sleepersCell.transform.childCount - InviolableObjectsCount));
         }
         else if (other.transform.TryGetComponent(out Diamond diamond))
         {
             if (transform.TryGetComponent(out Player player))
                 diamond.Split();
             else
-                diamond.PickUp();
+                diamond.PrepairPickUp();
         }
     }
 
     private IEnumerator WakeUpSleepers(int sleepersCount)
     {
         float tempOffset;
-        WaitForSeconds delay;
         AwakenedCharacter tempCharacter;
-
-        delay = new WaitForSeconds(0.05f);
 
         for (int i = 0; i < sleepersCount; i++)
         {
@@ -93,8 +91,8 @@ public class Collector : MonoBehaviour
             tempCharacter.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             tempCharacter.transform.position = new Vector3(transform.position.x, transform.position.y + tempOffset, transform.position.z);
 
-            if (_awakenedPool.childCount > _minValueForChangeSpawnType)
-                tempCharacter.InizializeParameters(_currentMaterial, _awakenedArray[_awakenedArray.Count - _offsetCount].Rigidbody);
+            if (_awakenedPool.childCount > MinValueForChangeSpawnType)
+                tempCharacter.InizializeParameters(_currentMaterial, _awakenedArray[_awakenedArray.Count - OffsetCount].Rigidbody);
             else
                 tempCharacter.InizializeParameters(_currentMaterial, _rigidbody);
 

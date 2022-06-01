@@ -14,16 +14,6 @@ public abstract class Character : MonoBehaviour
     protected bool IsOnBoard => _isOnBoard;
     public bool IsOnPlatform => _isOnPlatform;
 
-    abstract protected bool CanClickAgain();
-
-    private void OnEnable()
-    {
-        if (_moverSystems == null)
-            throw new System.ArgumentNullException("Отсутствует обязательный параметр. Проверьте редактор.");
-
-        _collider = GetComponent<BoxCollider>();
-    }
-
     public void InitializeJump()
     {
         _isOnGround = false;
@@ -36,9 +26,16 @@ public abstract class Character : MonoBehaviour
         _moverSystems.PrepairToForcedJump();
     }
 
-    protected void CorrectHorizontalPosition()
+    abstract protected bool CanClickAgain();
+
+    protected void CorrectHorizontalPosition() => transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), transform.position.y, Mathf.RoundToInt(transform.position.z));
+
+    private void OnEnable()
     {
-        transform.position = new Vector3(Mathf.RoundToInt(transform.position.x), transform.position.y, Mathf.RoundToInt(transform.position.z));
+        if (_moverSystems == null)
+            throw new System.ArgumentNullException("Отсутствует обязательный параметр. Проверьте редактор.");
+
+        _collider = GetComponent<BoxCollider>();
     }
 
     private void OnCollisionEnter(Collision collision)

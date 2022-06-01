@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SleeperGenerator : MonoBehaviour
 {
-    private const int _maxCapacityInCell = 3;
+    private const int MaxCapacityInCell = 3;
 
     [SerializeField] private Sleeper _sleeper;
     [SerializeField] private SleepersCell[] _sleepersCells;
@@ -38,7 +38,7 @@ public class SleeperGenerator : MonoBehaviour
         {
             currentIndexCell = Random.Range(0, _sleepersCells.Length);
 
-            while (_sleepersCells[currentIndexCell].SleepersCount >= _maxCapacityInCell)
+            while (_sleepersCells[currentIndexCell].SleepersCount >= MaxCapacityInCell)
                 currentIndexCell = Random.Range(0, _sleepersCells.Length);
 
             tempObject = Instantiate(_sleeper.gameObject, _sleepersCells[currentIndexCell].transform);

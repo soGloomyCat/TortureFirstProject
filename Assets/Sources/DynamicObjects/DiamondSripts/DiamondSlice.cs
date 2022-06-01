@@ -4,13 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class DiamondSlice : MonoBehaviour
 {
-    private const float _delay = 2f;
-    private const float _minSideOffset = -1.5f;
-    private const float _maxSideOffset = 1.5f;
-    private const float _minVerticalOffset = 0;
-    private const float _maxVerticalOffset = 0.5f;
-    private const float _minHorizontalOffset = -1.5f;
-    private const float _maxHorizontalOffset = 1.5f;
+    private const float Delay = 2f;
+    private const float SphereRadius = 100f;
 
     [Range(0, 100)]
     [SerializeField] private float _speed;
@@ -25,7 +20,7 @@ public class DiamondSlice : MonoBehaviour
 
     public void Dump()
     {
-        _rigidbody.AddForce(Random.insideUnitSphere * 50, ForceMode.Force);
+        _rigidbody.AddForce(Random.insideUnitSphere * SphereRadius, ForceMode.Force);
 
         if (_coroutine != null)
             StopCoroutine(_coroutine);
@@ -38,7 +33,7 @@ public class DiamondSlice : MonoBehaviour
         WaitForSeconds waiter;
         Vector3 finishPoint;
 
-        waiter = new WaitForSeconds(_delay);
+        waiter = new WaitForSeconds(Delay);
         finishPoint = new Vector3(10, 10, 0);
 
         yield return waiter;

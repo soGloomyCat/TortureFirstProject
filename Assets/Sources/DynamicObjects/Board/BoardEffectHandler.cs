@@ -29,18 +29,13 @@ public class BoardEffectHandler : MonoBehaviour
 
     private IEnumerator ShowSplashes()
     {
-        float timer;
+        WaitForSeconds waiter;
 
-        timer = 0;
+        waiter = new WaitForSeconds(0.3f);
+
         _sprites.SetActive(true);
         _particleSystem.Play();
-
-        while (timer <= 0.3f)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
+        yield return waiter;
         _sprites.SetActive(false);
     }
 }

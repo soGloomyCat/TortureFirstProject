@@ -4,10 +4,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Mover : MonoBehaviour
 {
-    private const float _normalForceBooster = 0.2f;
-    private const float _maxForceBooster = 0.4f;
-    private const int _mediumCellValue = 2;
-    private const int _largeCellValue = 3;
+    private const float NormalForceBooster = 0.2f;
+    private const float MaxForceBooster = 0.4f;
+    private const int MediumCellValue = 2;
+    private const int LargeCellValue = 3;
 
     [Range(0, 10)]
     [SerializeField] private float _verticalDirection;
@@ -28,18 +28,13 @@ public class Mover : MonoBehaviour
 
     private void OnEnable()
     {
-        Time.timeScale = 2;
         if (_platform == null || _platformsPool == null)
             throw new System.ArgumentNullException("Отсутствует обязательный параметр. Проверьте редактор.");
-    }
 
-    private void Start()
-    {
         _rigidbody = GetComponent<Rigidbody>();
         _isDefined = false;
         _onTraped = false;
         _onBoard = false;
-
     }
 
     private void Update()
@@ -72,16 +67,20 @@ public class Mover : MonoBehaviour
     {
         Ray tempRay;
         RaycastHit tempHit;
+        LayerMask ignoreLayerMask;
         float forceMultiplier;
+        float rayLengt;
 
+        ignoreLayerMask = ~LayerMask.GetMask("DiamondSlice");
         tempRay = new Ray(transform.position, Vector3.forward);
         forceMultiplier = 1;
+        rayLengt = 1.5f;
 
-        if (Physics.Raycast(tempRay, out tempHit, 1.5f))
-            if (tempHit.transform.TryGetComponent(out SleepersCell largeSleepersCell) && largeSleepersCell.SleepersCount >= _largeCellValue)
-                return forceMultiplier + _maxForceBooster;
-            else if (tempHit.transform.TryGetComponent(out SleepersCell mediumSleepersCell) && mediumSleepersCell.SleepersCount >= _mediumCellValue)
-                return forceMultiplier + _normalForceBooster;
+        if (Physics.Raycast(tempRay, out tempHit, rayLengt, ignoreLayerMask))
+            if (tempHit.transform.TryGetComponent(out SleepersCell largeSleepersCell) && largeSleepersCell.SleepersCount >= LargeCellValue)
+                return forceMultiplier + MaxForceBooster;
+            else if (tempHit.transform.TryGetComponent(out SleepersCell mediumSleepersCell) && mediumSleepersCell.SleepersCount >= MediumCellValue)
+                return forceMultiplier + NormalForceBooster;
 
         return forceMultiplier;
     }

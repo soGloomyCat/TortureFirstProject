@@ -12,10 +12,7 @@ public class DiamondsGenerator : MonoBehaviour
             throw new System.ArgumentNullException("Отсутствует обязательный параметр. Проверьте редактор.");
     }
 
-    private void Start()
-    {
-        GenerateDiamonds();
-    }
+    private void Start() => GenerateDiamonds();
 
     private void GenerateDiamonds()
     {

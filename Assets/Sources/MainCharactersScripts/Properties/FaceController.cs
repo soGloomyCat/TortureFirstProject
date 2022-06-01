@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class FaceController : MonoBehaviour
 {
-    private const string _triggerName = "ShouldBlink";
+    private const string TriggerName = "ShouldBlink";
 
     private Animator _animator;
     private float _cooldown;
@@ -27,6 +27,6 @@ public class FaceController : MonoBehaviour
     private void Blink()
     {
         _elapsedTime = 0;
-        _animator.SetTrigger(_triggerName);
+        _animator.SetTrigger(TriggerName);
     }
 }

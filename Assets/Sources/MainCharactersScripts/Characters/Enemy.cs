@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    private const int _triggerValue = 0;
+    private const int TriggerValue = 0;
 
     [Range(0, 100)]
     [SerializeField] private float _minCooldown;
@@ -30,7 +30,7 @@ public class Enemy : Character
 
     protected override bool CanClickAgain()
     {
-        if (_elapsedTime <= _triggerValue)
+        if (_elapsedTime <= TriggerValue)
         {
             if (IsOnGround || IsOnBoard || IsOnPlatform)
             {

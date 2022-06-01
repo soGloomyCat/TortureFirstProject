@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class BlinkHandler : MonoBehaviour
 {
-    private const string _shadowLayerLabel = "_ColorDim";
+    private const string ShadowLayerLabel = "_ColorDim";
 
     [SerializeField] private Mover _mover;
     [SerializeField] private SpriteRenderer _eyes;
@@ -18,7 +18,7 @@ public class BlinkHandler : MonoBehaviour
     private void Start()
     {
         _mainMaterial = GetComponent<Renderer>().material;
-        _shadowColor = _mainMaterial.GetColor(_shadowLayerLabel);
+        _shadowColor = _mainMaterial.GetColor(ShadowLayerLabel);
     }
 
     public void PrepairToBlink()
@@ -49,14 +49,14 @@ public class BlinkHandler : MonoBehaviour
             _mouth.color = new Color(_mouth.color.r, _mouth.color.g, _mouth.color.b, minAlphaValue);
             Evaporate();
             _mainMaterial.color = new Color(_mainMaterial.color.r, _mainMaterial.color.g, _mainMaterial.color.b, minAlphaValue);
-            _mainMaterial.SetColor(_shadowLayerLabel, new Color(_shadowColor.r, _shadowColor.g, _shadowColor.b, minAlphaValue));
+            _mainMaterial.SetColor(ShadowLayerLabel, new Color(_shadowColor.r, _shadowColor.g, _shadowColor.b, minAlphaValue));
             yield return timer;
 
             _eyes.color = new Color(_eyes.color.r, _eyes.color.g, _eyes.color.b, maxAlphaValue);
             _mouth.color = new Color(_mouth.color.r, _mouth.color.g, _mouth.color.b, maxAlphaValue);
             Recover();
             _mainMaterial.color = new Color(_mainMaterial.color.r, _mainMaterial.color.g, _mainMaterial.color.b, maxAlphaValue);
-            _mainMaterial.SetColor(_shadowLayerLabel, new Color(_shadowColor.r, _shadowColor.g, _shadowColor.b, maxAlphaValue));
+            _mainMaterial.SetColor(ShadowLayerLabel, new Color(_shadowColor.r, _shadowColor.g, _shadowColor.b, maxAlphaValue));
             yield return timer;
 
             currentBlink++;

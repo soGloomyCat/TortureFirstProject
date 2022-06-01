@@ -1,16 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class SleepersCell : MonoBehaviour
 {
-    private const int _inviolableObjectsCount = 1;
+    private const int InviolableObjectsCount = 1;
+    private const float Denominator = 2f;
+    private const float Multiplier = 0.27f;
 
     [SerializeField] private ParticleSystem _particleSystem;
 
     private BoxCollider _collider;
-    private Coroutine _coroutine;
 
-    public int SleepersCount => transform.childCount - _inviolableObjectsCount;
+    public int SleepersCount => transform.childCount - InviolableObjectsCount;
     public float SidePosition => transform.position.x;
     public float VerticalPosition => transform.position.y;
     public float HorizontalPosition => transform.position.z;
@@ -25,10 +26,6 @@ public class SleepersCell : MonoBehaviour
 
     public void StartDestroy()
     {
-        //if (_coroutine != null)
-        //    StopCoroutine(_coroutine);
-
-        //_coroutine = StartCoroutine(DestroyAvailableSleepers());
         _particleSystem.Play();
 
         for (int i = 1; i < transform.childCount; i++)
@@ -39,25 +36,10 @@ public class SleepersCell : MonoBehaviour
 
     public void SetColliderParameters()
     {
-        float tempVerticalSize = (float)SleepersCount / 2;
-        float tempVerticalCenter = SleepersCount * 0;
+        float tempVerticalSize = SleepersCount / Denominator;
+        float tempVerticalCenter = SleepersCount * Multiplier;
 
         _collider.size = new Vector3(_collider.size.x, tempVerticalSize, _collider.size.z);
         _collider.center = new Vector3(_collider.center.x, tempVerticalCenter, _collider.center.z);
     }
-
-    private IEnumerator DestroyAvailableSleepers()
-    {
-        WaitForSeconds waiter;
-
-        waiter = new WaitForSeconds(0.15f);
-        
-
-        for (int i = transform.childCount - 1; i >= 1; i--)
-        {
-            Destroy(transform.GetChild(i).gameObject);
-            yield return waiter;
-        }
-    }
-
 }

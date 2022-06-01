@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class Player : Character
 {
-    private const int _buttonIndex = 0;
+    private const int ButtonIndex = 0;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(_buttonIndex))
-            Time.timeScale = 2f;
-
-        if (Input.GetMouseButtonDown(_buttonIndex) && CanClickAgain())
+        if (Input.GetMouseButtonDown(ButtonIndex) && CanClickAgain())
             InitializeJump();
 
         if (IsOnGround)
