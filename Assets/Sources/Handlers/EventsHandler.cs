@@ -7,6 +7,7 @@ public class EventsHandler : MonoBehaviour
     [SerializeField] private Stalker[] _stalkers;
     [SerializeField] private BlinkHandler[] _blinkHandlers;
     [SerializeField] private Arrow[] _arrows;
+    [SerializeField] private TimeHandler _timeHandler;
 
     private void OnEnable()
     {
@@ -32,6 +33,7 @@ public class EventsHandler : MonoBehaviour
         for (int i = 0; i < _stalkers.Length; i++)
         {
             _movers[i].Moved += _stalkers[i].OnMoveHandler;
+            _movers[i].Finished += _timeHandler.ChangeScale;
         }
 
         for (int i = 0; i < _arrows.Length; i++)
@@ -52,6 +54,7 @@ public class EventsHandler : MonoBehaviour
         for (int i = 0; i < _stalkers.Length; i++)
         {
             _movers[i].Moved -= _stalkers[i].OnMoveHandler;
+            _movers[i].Finished -= _timeHandler.ChangeScale;
         }
 
         for (int i = 0; i < _arrows.Length; i++)

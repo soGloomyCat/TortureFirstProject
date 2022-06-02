@@ -130,18 +130,18 @@ CharacterJoint:
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
-    spring: 500
+    spring: 600
     damper: 0
   m_LowTwistLimit:
-    limit: -1
+    limit: -0.5
     bounciness: 1
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 1
+    limit: 0.5
     bounciness: 1
     contactDistance: 0
   m_SwingLimitSpring:
-    spring: 500
+    spring: 600
     damper: 0
   m_Swing1Limit:
     limit: 0

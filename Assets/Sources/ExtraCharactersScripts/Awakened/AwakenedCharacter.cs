@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class AwakenedCharacter : MonoBehaviour
 {
-    private const float Offset = 3;
+    private const float Offset = 2;
 
     private Renderer _renderer;
     private CharacterJoint _characterJoint;

@@ -25,6 +25,7 @@ public class Mover : MonoBehaviour
     public event UnityAction Moved;
     public event UnityAction Traped;
     public event UnityAction Encountered;
+    public event UnityAction Finished;
 
     private void OnEnable()
     {
@@ -92,7 +93,7 @@ public class Mover : MonoBehaviour
         float rayLength;
 
         tempRay = new Ray(transform.position, new Vector3(0, -0.5f, 0.1f));
-        rayLength = 1.5f;
+        rayLength = 2f;
 
         if (Physics.Raycast(tempRay, out tempHit, rayLength))
             if (tempHit.collider.transform.TryGetComponent(out Character character))
@@ -166,6 +167,7 @@ public class Mover : MonoBehaviour
         {
             _finishPosition = new Vector3(finish.transform.position.x, transform.position.y, transform.position.z);
             transform.position = _finishPosition;
+            Finished?.Invoke();
         }
     }
 }
