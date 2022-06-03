@@ -20,7 +20,7 @@ public class Mover : MonoBehaviour
     private bool _isDefined;
     private bool _onTraped;
     private bool _onBoard;
-    private Vector3 _finishPosition;
+    private Vector3 _baseDirection;
 
     public event UnityAction Moved;
     public event UnityAction Traped;
@@ -36,6 +36,7 @@ public class Mover : MonoBehaviour
         _isDefined = false;
         _onTraped = false;
         _onBoard = false;
+        _baseDirection = new Vector3(0, _verticalDirection, _horizontalDirection);
     }
 
     private void Update()
@@ -53,7 +54,7 @@ public class Mover : MonoBehaviour
 
     public void PrepairToJump()
     {
-        _rigidbody.AddForce(new Vector3(0, _verticalDirection * DetermineJumpForce(), _horizontalDirection / DetermineJumpForce()), ForceMode.Impulse);
+        _rigidbody.AddForce(new Vector3(_baseDirection.x, _baseDirection.y * DetermineJumpForce(), _baseDirection.z), ForceMode.Impulse);
         Moved?.Invoke();
         _isDefined = false;
     }
@@ -61,7 +62,7 @@ public class Mover : MonoBehaviour
     public void PrepairToForcedJump()
     {
         Encountered?.Invoke();
-        _rigidbody.AddForce(new Vector3(0, _verticalDirection, _horizontalDirection), ForceMode.Impulse);
+        _rigidbody.AddForce(_baseDirection, ForceMode.Impulse);
         Moved?.Invoke();
     }
     private float DetermineJumpForce()
@@ -165,8 +166,16 @@ public class Mover : MonoBehaviour
     {
         if (other.transform.TryGetComponent(out Finish finish))
         {
-            _finishPosition = new Vector3(finish.transform.position.x, transform.position.y, transform.position.z);
-            transform.position = _finishPosition;
+            float dist = finish.transform.position.x + transform.position.x;
+            _baseDirection = new Vector3(-dist, _baseDirection.y, _baseDirection.z);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.TryGetComponent(out Finish finish))
+        {
+            _baseDirection = new Vector3(0, _baseDirection.y, _baseDirection.z);
             Finished?.Invoke();
         }
     }

@@ -40,6 +40,7 @@ public class EventsHandler : MonoBehaviour
         {
             _collectors[i].AddedNewAwakend += _arrows[i].Shift;
             _collectors[i].RemovedLastAwakend += _arrows[i].Shift;
+            _collectors[i].RemovedPlayer += _arrows[i].UnParent;
         }
     }
 
@@ -61,6 +62,7 @@ public class EventsHandler : MonoBehaviour
         {
             _collectors[i].AddedNewAwakend -= _arrows[i].Shift;
             _collectors[i].RemovedLastAwakend -= _arrows[i].Shift;
+            _collectors[i].RemovedPlayer += _arrows[i].UnParent;
         }
     }
 }

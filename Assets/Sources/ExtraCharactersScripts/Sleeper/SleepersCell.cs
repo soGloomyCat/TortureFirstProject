@@ -7,6 +7,7 @@ public class SleepersCell : MonoBehaviour
     private const float Denominator = 2f;
     private const float Multiplier = 0.27f;
 
+    [SerializeField] private int _count;
     [SerializeField] private ParticleSystem _particleSystem;
 
     private BoxCollider _collider;
@@ -15,6 +16,7 @@ public class SleepersCell : MonoBehaviour
     public float SidePosition => transform.position.x;
     public float VerticalPosition => transform.position.y;
     public float HorizontalPosition => transform.position.z;
+    public int Count => _count;
 
     private void OnEnable()
     {

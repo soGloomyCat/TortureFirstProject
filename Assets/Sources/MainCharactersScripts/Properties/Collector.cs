@@ -24,6 +24,7 @@ public class Collector : MonoBehaviour
 
     public event Action<Transform> AddedNewAwakend;
     public event Action<Transform> RemovedLastAwakend;
+    public event Action<Transform> RemovedPlayer;
 
     private void OnEnable()
     {
@@ -54,6 +55,7 @@ public class Collector : MonoBehaviour
         }
         else
         {
+            RemovedPlayer?.Invoke(transform);
             Destroy(gameObject);
         }
     }

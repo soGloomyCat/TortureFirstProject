@@ -22,11 +22,11 @@ public class AwakenedCharacter : MonoBehaviour
 
     public void InizializeParameters(Material material, Rigidbody rigidbody)
     {
-        float temp = transform.localScale.y * Offset;
+        float verticalPosition = transform.localScale.y * Offset;
 
         _renderer.material = material;
         _characterJoint.connectedBody = rigidbody;
-        _characterJoint.anchor = new Vector3(0, -temp, 0);
-        _characterJoint.connectedAnchor = new Vector3(0, -(--temp), 0);
+        _characterJoint.anchor = new Vector3(0, -verticalPosition, 0);
+        _characterJoint.connectedAnchor = new Vector3(0, -(--verticalPosition), 0);
     }
 }

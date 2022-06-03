@@ -27,7 +27,7 @@ public class SleeperGenerator : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject tempObject;
+        Sleeper tempObject;
         int currentIteration;
         int currentIndexCell;
         float tempOffset;
@@ -38,10 +38,10 @@ public class SleeperGenerator : MonoBehaviour
         {
             currentIndexCell = Random.Range(0, _sleepersCells.Length);
 
-            while (_sleepersCells[currentIndexCell].SleepersCount >= MaxCapacityInCell)
+            while (_sleepersCells[currentIndexCell].SleepersCount >= _sleepersCells[currentIndexCell].Count)
                 currentIndexCell = Random.Range(0, _sleepersCells.Length);
 
-            tempObject = Instantiate(_sleeper.gameObject, _sleepersCells[currentIndexCell].transform);
+            tempObject = Instantiate(_sleeper, _sleepersCells[currentIndexCell].transform);
 
             if (_sleepersCells[currentIndexCell].transform.childCount > 2)
             {
