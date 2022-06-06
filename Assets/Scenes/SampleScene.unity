@@ -3328,8 +3328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moverSystems: {fileID: 812391059}
-  _minCooldown: 2
-  _maxCooldown: 5
+  _minCooldown: 1.5
+  _maxCooldown: 3
 --- !u!114 &812391058
 MonoBehaviour:
   m_ObjectHideFlags: 0

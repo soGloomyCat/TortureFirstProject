@@ -90,8 +90,12 @@ public class Collector : MonoBehaviour
             _countCubesCollected++;
             tempCharacter = Instantiate(_prefab, _awakenedPool);
             tempOffset = _offset * _countCubesCollected;
+
             tempCharacter.transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             tempCharacter.transform.position = new Vector3(transform.position.x, transform.position.y + tempOffset, transform.position.z);
+
+            if (_awakenedArray.Count > 0)
+                tempCharacter.transform.localRotation = _awakenedArray[_awakenedArray.Count - OffsetCount].transform.localRotation;
 
             if (_awakenedPool.childCount > MinValueForChangeSpawnType)
                 tempCharacter.InizializeParameters(_currentMaterial, _awakenedArray[_awakenedArray.Count - OffsetCount].Rigidbody);
