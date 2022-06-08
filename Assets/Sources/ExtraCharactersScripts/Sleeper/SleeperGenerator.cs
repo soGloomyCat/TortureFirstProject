@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class SleeperGenerator : MonoBehaviour
 {
-    private const int MaxCapacityInCell = 3;
-
     [SerializeField] private Sleeper _sleeper;
     [SerializeField] private SleepersCell[] _sleepersCells;
     [Range(0, 100)]

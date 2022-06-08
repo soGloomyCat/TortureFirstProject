@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 1641963357059511779}
   - component: {fileID: 1126859590877961405}
   - component: {fileID: -128723928390839406}
+  - component: {fileID: 3242877139554551215}
   - component: {fileID: -4016152474730893923}
+  - component: {fileID: 3163875810706219857}
   - component: {fileID: -4500539057257051157}
   m_Layer: 0
   m_Name: AwakenedCharacter
@@ -102,6 +104,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3242877139554551215
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069639492185015917}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-4016152474730893923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +127,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbc4daed41cfedc4588d328095318bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eyes: {fileID: 7054982329214972186}
+  _mouth: {fileID: 4036709242319285497}
+  _blinkHandler: {fileID: 3163875810706219857}
+--- !u!114 &3163875810706219857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4069639492185015917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1ed0cdebbad094f85bb03b96f53120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!144 &-4500539057257051157

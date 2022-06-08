@@ -15,6 +15,7 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _horizontalDirection;
     [SerializeField] private Platform _platform;
     [SerializeField] private Transform _platformsPool;
+    [SerializeField] private Collector _collector;
 
     private Rigidbody _rigidbody;
     private bool _isDefined;
@@ -169,6 +170,10 @@ public class Mover : MonoBehaviour
             float dist = finish.transform.position.x + transform.position.x;
             _baseDirection = new Vector3(-dist, _baseDirection.y, _baseDirection.z);
         }
+
+        if (other.transform.TryGetComponent(out AwakenedCharacter awaker) && _collector.CheckSameStatus(awaker))
+            awaker.PrepairToChangeColor();
+
     }
 
     private void OnTriggerExit(Collider other)

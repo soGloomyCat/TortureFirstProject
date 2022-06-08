@@ -49,5 +49,8 @@ public class BoardMoveHandler : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) => _pointIndex = GetCurrent(_pointIndex);
+    private void OnTriggerEnter(Collider other)
+    {
+        _pointIndex = GetCurrent(_pointIndex);
+    }
 }
