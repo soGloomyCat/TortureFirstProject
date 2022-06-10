@@ -50,10 +50,18 @@ public class Collector : MonoBehaviour
 
     public bool CheckSameStatus(AwakenedCharacter awaker)
     {
-        if (awaker.IsLinkedToPlayer && _awakenedList[0].IsLinkedToPlayer == false || awaker.IsLinkedToPlayer == false && _awakenedList[0].IsLinkedToPlayer)
-            return true;
+        if (_awakenedList.Count > 0)
+        {
+            if (awaker.IsLinkedToPlayer && _awakenedList[0].IsLinkedToPlayer == false || awaker.IsLinkedToPlayer == false && _awakenedList[0].IsLinkedToPlayer)
+                return true;
+        }
+        else
+        {
+            if (_player != null && awaker.IsLinkedToPlayer == false || _player == null && awaker.IsLinkedToPlayer == true)
+                return true;
+        }
 
-        return false;
+        return false; 
     }
 
     private void OnEnable()
